@@ -37,7 +37,7 @@ python -m pip install -U prettytable
 ```
 
 ## 二.运行predict测试文件
-天气图像4分类训练权重下载:https://wwp.lanzouf.com/idxxS02lynkbNBSP密码:67qh
+天气图像4分类训练权重下载:https://wwp.lanzouf.com/idxxS02lynkbNBSP  密码:67qh
 
 将权重存放到任意路径下。
 修改predict的-pw参数
@@ -49,7 +49,7 @@ python predict.py -pw your weight's path -pp the path of your image applied to p
 ## 三.制作并训练自己的数据
 这里以天气四分类数据集为例子。
 
-数据下载:https://wwp.lanzouf.com/iQ9g702lytmjNBSP密码:6bbf
+数据下载:https://wwp.lanzouf.com/iQ9g702lytmjNBSP 密码:6bbf
 
 1.在data目录下放入数据集(JPEGImage)文件夹，图像数据集存储格式不是ImageFloder;
 
