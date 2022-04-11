@@ -1,5 +1,6 @@
-# Pytorch ImageClassification使用方法
+# Pytorch ImageClassification
 
+A continual-update image classification platform.
 
 ## 一.配置环境
 
