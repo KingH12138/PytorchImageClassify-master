@@ -51,7 +51,7 @@ python predict.py -pw your weight's path -pp the path of your image applied to p
 
 数据下载:https://wwp.lanzouf.com/iQ9g702lytmjNBSP密码:6bbf
 
-1.在任意目录(推荐是data目录)下放入数据集(JPEGImage)文件夹，图像数据集存储格式不是ImageFloder;
+1.在data目录下放入数据集(JPEGImage)文件夹，图像数据集存储格式不是ImageFloder;
 
 2.运行Multi-class_Weather_Dataset_for_Image_Classification.py脚本，生产datast_info.csv文件;
 
