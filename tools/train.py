@@ -71,7 +71,7 @@ def get_arg():
     parser.add_argument(
         '-e',
         type=int,
-        default=2,
+        default=1,
         help='epoch'
     )
     parser.add_argument(
@@ -150,7 +150,7 @@ for epoch in range(args.e):
         loss = loss_fn(output, y_train)
         optimizer.zero_grad()
         # clone().detach()：可以仅仅复制一个tensor的数值而不影响tensor# 原内存和计算图
-        train_loss += loss.clone().detach().cpu().data
+        train_loss += loss.clone().detach().cpu().numpy()
         loss.backward()
         optimizer.step()
         # 显示每一批次的loss
