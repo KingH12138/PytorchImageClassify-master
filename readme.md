@@ -1,6 +1,5 @@
-# Pytorch ImageClassification
+# Pytorch ImageClassification使用方法
 
-A continual-update image classification platform.
 
 ## 一.配置环境
 
@@ -37,7 +36,10 @@ python -m pip install -U prettytable
 ```
 
 ## 二.运行predict测试文件
-天气图像4分类训练权重下载:https://wwp.lanzouf.com/b036uvu0b  密码:hhie
+
+预测权重下载:https://wwp.lanzouf.com/iQ9g702lytmj
+
+密码:6bbf
 
 将权重存放到任意路径下。
 修改predict的-pw参数
@@ -47,11 +49,14 @@ python -m pip install -U prettytable
 python predict.py -pw your weight's path -pp the path of your image applied to prediciton
 ```
 ## 三.制作并训练自己的数据
-这里以天气四分类数据集为例子。
+这里海洋生物4分类数据集为例子，部分数据集下载:
 
-数据下载:https://wwp.lanzouf.com/iQ9g702lytmj 密码:6bbf
 
-1.在data目录下放入数据集(JPEGImage)文件夹，图片命名格式为classname+index.jpg，图像数据集存储格式不是ImageFloder;
+数据下载:https://wwp.lanzouf.com/idxxS02lynkb
+
+密码:67qh
+
+1.在任意目录(推荐是data目录)下放入数据集(JPEGImage)文件夹，图像数据集存储格式不是ImageFloder;
 
 2.运行Multi-class_Weather_Dataset_for_Image_Classification.py脚本，生产datast_info.csv文件;
 
