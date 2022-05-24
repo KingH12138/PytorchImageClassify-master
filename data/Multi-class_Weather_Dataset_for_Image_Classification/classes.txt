@@ -1,4 +1,0 @@
-0 shine
-1 rain
-2 cloudy
-3 sunrise
