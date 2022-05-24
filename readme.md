@@ -75,3 +75,7 @@ python train.py -e 20   # 设置迭代次数epoches为20
 ```
 python train.py
 ```
+
+## 四.注意事项
+
+2022/5/24日更新:若出现报错“页面太小......”，可以尝试调高datasets下的dataload.py里面的get_dataloader函数的num_workers参数。
