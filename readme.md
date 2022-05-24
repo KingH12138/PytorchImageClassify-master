@@ -37,9 +37,9 @@ python -m pip install -U prettytable
 
 ## 二.运行predict测试文件
 
-预测权重下载:https://wwp.lanzouf.com/iQ9g702lytmj
+预测权重下载:https://wwp.lanzouf.com/idxxS02lynkb
 
-密码:6bbf
+密码:67qh
 
 将权重存放到任意路径下。
 修改predict的-pw参数
@@ -52,9 +52,9 @@ python predict.py -pw your weight's path -pp the path of your image applied to p
 这里海洋生物4分类数据集为例子，部分数据集下载:
 
 
-数据下载:https://wwp.lanzouf.com/idxxS02lynkb
+数据下载:https://wwp.lanzouf.com/iQ9g702lytmj
 
-密码:67qh
+密码:6bbf
 
 1.在任意目录(推荐是data目录)下放入数据集(JPEGImage)文件夹，图像数据集存储格式不是ImageFloder;
 
