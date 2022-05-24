@@ -35,6 +35,8 @@ def get_dataloader(image_dir, csv_path, resize, batch_size, train_percent=0.9):
     num_train = int(train_percent * num_sample)
     num_valid = num_sample - num_train
     train_ds, valid_ds = random_split(dataset, [num_train, num_valid])
-    train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=True, num_workers=0)
-    valid_dl = DataLoader(valid_ds, batch_size=batch_size, shuffle=True, num_workers=0)
+    train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True,
+                          persistent_workers=True)
+    valid_dl = DataLoader(valid_ds, batch_size=batch_size, shuffle=False, num_workers=4, pin_memory=True,
+                          persistent_workers=True)
     return train_dl, valid_dl, len(dataset), len(train_ds), len(valid_ds)
