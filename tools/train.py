@@ -122,7 +122,7 @@ if __name__ == '__main__':
     print("{}\n".format(classes_table))
     print("Train information:")
     model = Resnet18(pretrain=True, num_classes=args.cn).to(device)
-    summary(model, input_size=(args.bs, 3, args.rs[0], args.rs[1]))
+    summary(model, input_size=(3, args.rs[0], args.rs[1]))
     optimizer = Adam(params=model.parameters(), lr=args.lr)
     loss_fn = CrossEntropyLoss()
     train_table = PrettyTable(['theme', 'resize', 'batch size', 'epoch', 'learning rate', 'directory of log'],
