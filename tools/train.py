@@ -6,7 +6,8 @@ from prettytable import PrettyTable
 from torch.nn import CrossEntropyLoss
 from torch.optim import Adam
 from tqdm import tqdm
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, average_precision_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, \
+    average_precision_score
 
 from datasets.dataload import get_dataloader
 from tools.log_generator import log_generator
@@ -26,13 +27,13 @@ if __name__ == '__main__':
         parser.add_argument(
             '-imagep',
             type=str,
-            default=r'..\data\Multi-class_Weather_Dataset_for_Image_Classification\JPEGImage',
+            default=r'F:\PycharmProjects\Pytorch-ImageClassification-master\data\scatter\Multi-class_Weather_Dataset_for_Image_Classification\JPEGImage',
             help="image's directory"
         )
         parser.add_argument(
             '-csvp',
             type=str,
-            default=r'..\data\Multi-class_Weather_Dataset_for_Image_Classification\dataset_info.csv',
+            default=r'F:\PycharmProjects\Pytorch-ImageClassification-master\data\scatter\Multi-class_Weather_Dataset_for_Image_Classification\refer.csv',
             help="DIF(dataset information file)'s path"
         )
         parser.add_argument(
@@ -54,9 +55,9 @@ if __name__ == '__main__':
             help='resized shape of input tensor'
         )
         parser.add_argument(
-            '-classes',
-            type=list,
-            default=['shine', 'rain', 'cloudy', 'sunrise'],
+            '-clsp',
+            type=str,
+            default=r'F:\PycharmProjects\Pytorch-ImageClassification-master\data\scatter\Multi-class_Weather_Dataset_for_Image_Classification\classes.txt',
             help="classes.txt's path"
         )
         parser.add_argument(
@@ -68,7 +69,7 @@ if __name__ == '__main__':
         parser.add_argument(
             '-e',
             type=int,
-            default=1,
+            default=10,
             help='epoch'
         )
         parser.add_argument(
@@ -88,7 +89,8 @@ if __name__ == '__main__':
 
 
     args = get_arg()  # 得到参数Namespace
-# ----------------------------------------------------------------------------------------------------------------------
+
+    # ----------------------------------------------------------------------------------------------------------------------
     print("Training device information:")
     # 训练设备信息
     device_table = ""
@@ -103,7 +105,7 @@ if __name__ == '__main__':
         print("Using cpu......")
         device_table = 'CPU'
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-# ----------------------------------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------------------------------
     # 数据集信息
     print("Use dataset information file:{}\nLoading dataset from path: {}......".format(args.csvp, args.imagep))
     train_dl, valid_dl, samples_num, train_num, valid_num = get_dataloader(args.imagep, args.csvp, args.rs, args.bs
@@ -111,11 +113,12 @@ if __name__ == '__main__':
     dataset_table = PrettyTable(['number of samples', 'train number', 'valid number', 'percent'], min_table_width=80)
     dataset_table.add_row([samples_num, train_num, valid_num, args.tp])
     print("{}\n".format(dataset_table))
-# ----------------------------------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------------------------------
     # 训练组件配置
     print("Classes information:")
-    classes_table = PrettyTable(args.classes, min_table_width=80)
-    classes_table.add_row(range(len(args.classes)))
+    classes = open(args.clsp,'r').read().split('\n')[:-1]
+    classes_table = PrettyTable(classes, min_table_width=80)
+    classes_table.add_row(range(len(classes)))
     print("{}\n".format(classes_table))
     print("Train information:")
     model = Resnet18(pretrain=True, num_classes=args.cn).to(device)
@@ -125,7 +128,7 @@ if __name__ == '__main__':
                               min_table_width=120)
     train_table.add_row([args.t, args.bs, args.bs, args.e, args.lr, args.ld])
     print('{}\n'.format(train_table))
-# ----------------------------------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------------------------------
     # 开始训练
     losses = []
     accuracies = []
@@ -134,9 +137,15 @@ if __name__ == '__main__':
     f1s = []
     aucs = []
     maps = []
+    best_checkpoint = 0.
 
     st = datetime.now()
     for epoch in range(args.e):
+
+        prediction = []
+        label = []
+        score = []
+
         model.train()
         train_bar = tqdm(iter(train_dl), ncols=150, colour='red')
         train_loss = 0.
@@ -172,44 +181,37 @@ if __name__ == '__main__':
         for valid_data in valid_bar:
             x_valid, y_valid = valid_data
             x_valid = x_valid.to(device)
-            y_valid_ = y_valid.clone().detach().numpy()  # y_valid就不必放到gpu上训练了
+            y_valid_ = y_valid.clone().detach().numpy().tolist()  # y_valid就不必放到gpu上训练了
             output = model(x_valid)  # shape:(N*cls_n)
             output_ = output.clone().detach().cpu()
             _, pred = torch.max(output_, 1)  # 输出每一行(样本)的最大概率的下标
-            pred_ = pred.clone().detach().numpy()
-            acc, precision, recall, f1, auc, ap = accuracy_score(y_true=y_valid_, y_pred=pred_), \
-                                                  precision_score(y_true=y_valid_, y_pred=pred_, average='weighted'), \
-                                                  recall_score(y_true=y_valid_, y_pred=pred_, average='weighted'), \
-                                                  f1_score(y_true=y_valid_, y_pred=pred_, average='weighted'), \
-                                                  roc_auc_score(y_true=y_valid_, y_score=pred_, average='weighted'),\
-                                                  average_precision_score(y_true=y_valid_, y_score=pred_, average='weighted')
-            valid_acc = valid_acc + acc
-            valid_pre = valid_pre + precision
-            valid_recall = valid_recall + recall
-            valid_f1 = valid_f1 + f1
-
+            pred_ = pred.clone().detach().numpy().tolist()
+            output_ = output_.numpy().tolist()
             # 显示每一批次的acc/precision/recall/f1
             valid_bar.set_description("Epoch:{}/{} Step:{}/{}".format(epoch + 1, args.e, i + 1, len(valid_dl)))
-            valid_bar.set_postfix({"accuracy": "%.3f" % acc, "precision": "%.3f" % precision, "recall": "%.3f" % recall,
-                                   "f1": "%.3f" % f1})
+            prediction = prediction + pred_
+            label = label + y_valid_
+            score = score + output_
             i += 1
-
         # 最后得到的i是一次迭代中的样本数批数
-        valid_acc = valid_acc / i
-        valid_pre = valid_pre / i
-        valid_recall = valid_recall / i
-        valid_f1 = valid_f1 / i
-        valid_auc = valid_auc / i
-        valid_map = valid_ap / i
+        # 每一次epoch计算一次
+        valid_acc = accuracy_score(y_true=label, y_pred=prediction)
+        valid_pre = precision_score(y_true=label, y_pred=prediction, average='weighted')
+        valid_recall = recall_score(y_true=label, y_pred=prediction, average='weighted')
+        valid_f1 = f1_score(y_true=label, y_pred=prediction, average='weighted')
+        # valid_auc = roc_auc_score(y_true=label, y_score=score, average='weighted', multi_class="ovr")
+        # valid_ap = average_precision_score(y_true=label, y_score=score)
 
         accuracies.append(valid_acc)
         precisions.append(valid_pre)
         recalls.append(valid_recall)
         f1s.append(valid_f1)
-        aucs.append(valid_auc)
-        maps.append(valid_map)
+        # aucs.append(valid_auc)
+        # maps.append(valid_ap)
 
+        if valid_f1 >= max(f1s):    # 如果本次epoch的f1大于了存储f1列表的最大值，那么最好的checkpoint赋值为model
+            best_checkpoint = model
     et = datetime.now()
-
-    log_generator(args.t, et - st, dataset_table, classes_table, device_table, train_table, str(optimizer), str(model),
-                  args.e, [losses, accuracies, precisions, recalls, f1s, aucs, maps], args.ld)
+    log_generator(args.t, args.csvp,args.clsp,(1, 3, args.rs[0], args.rs[1]), et - st, dataset_table, classes_table, device_table,
+                  train_table, optimizer, model,
+                  args.e, [losses, accuracies, precisions, recalls, f1s], args.ld, best_checkpoint)
