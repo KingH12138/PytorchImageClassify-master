@@ -8,7 +8,7 @@ from torch.optim import Adam
 from tqdm import tqdm
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, \
     average_precision_score
-
+from torchsummary import summary
 from datasets.dataload import get_dataloader
 from tools.log_generator import log_generator
 from model.resnet import Resnet18
@@ -122,6 +122,7 @@ if __name__ == '__main__':
     print("{}\n".format(classes_table))
     print("Train information:")
     model = Resnet18(pretrain=True, num_classes=args.cn).to(device)
+    summary(model, input_size=(args.bs, 3, args.rs[0], args.rs[1]))
     optimizer = Adam(params=model.parameters(), lr=args.lr)
     loss_fn = CrossEntropyLoss()
     train_table = PrettyTable(['theme', 'resize', 'batch size', 'epoch', 'learning rate', 'directory of log'],
