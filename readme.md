@@ -83,8 +83,10 @@ python train.py
 
 ## 四.注意事项
 
-2022/5/24日更新:若出现报错“页面太小......”，可以尝试调高datasets下的dataload.py里面的get_dataloader函数的num_workers参数。
+2022/5/24更新:若出现报错“页面太小......”，可以尝试调高datasets下的dataload.py里面的get_dataloader函数的num_workers参数。
 
-2022/5/24日更新:opencv-python仅仅支持全英文路径。
+2022/5/24更新:opencv-python仅仅支持全英文路径。
 
-2022/5/25日更新：关于accuracy等indicators的计算，如果使用sklearn的metric，需要以epoch为单位去计算，而不能以batch为单位计算；如果预测出一个batch中y_label没有的label就会警告，而且我具体也不知道他的处理方式，所以干脆就以epoch为单位计算，结果发现速度没有下降，反而还有所提升。
+2022/5/25更新：关于accuracy等indicators的计算，如果使用sklearn的metric，需要以epoch为单位去计算，而不能以batch为单位计算；如果预测出一个batch中y_label没有的label就会警告，而且我具体也不知道他的处理方式，所以干脆就以epoch为单位计算，结果发现速度没有下降，反而还有所提升。
+
+2022/5/26更新：提供了中间层特征图绘制功能。
