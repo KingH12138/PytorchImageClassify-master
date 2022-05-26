@@ -27,13 +27,13 @@ if __name__ == '__main__':
         parser.add_argument(
             '-imagep',
             type=str,
-            default=r'F:\PycharmProjects\Pytorch-ImageClassification-master\data\scatter\Multi-class_Weather_Dataset_for_Image_Classification\JPEGImage',
+            default=r'F:\dbas3\jhb\Pytorch-ImageClassify-master\PytorchImageClassify-master-main\data\folder\Multi-class_Weather_Dataset_for_Image_Classification\JPEGImage',
             help="image's directory"
         )
         parser.add_argument(
             '-csvp',
             type=str,
-            default=r'F:\PycharmProjects\Pytorch-ImageClassification-master\data\scatter\Multi-class_Weather_Dataset_for_Image_Classification\refer.csv',
+            default=r'F:\dbas3\jhb\Pytorch-ImageClassify-master\PytorchImageClassify-master-main\data\folder\Multi-class_Weather_Dataset_for_Image_Classification\refer.csv',
             help="DIF(dataset information file)'s path"
         )
         parser.add_argument(
@@ -57,7 +57,7 @@ if __name__ == '__main__':
         parser.add_argument(
             '-clsp',
             type=str,
-            default=r'F:\PycharmProjects\Pytorch-ImageClassification-master\data\scatter\Multi-class_Weather_Dataset_for_Image_Classification\classes.txt',
+            default=r'F:\dbas3\jhb\Pytorch-ImageClassify-master\PytorchImageClassify-master-main\data\folder\Multi-class_Weather_Dataset_for_Image_Classification\classes.txt',
             help="classes.txt's path"
         )
         parser.add_argument(
@@ -69,7 +69,7 @@ if __name__ == '__main__':
         parser.add_argument(
             '-e',
             type=int,
-            default=10,
+            default=20,
             help='epoch'
         )
         parser.add_argument(
@@ -77,6 +77,12 @@ if __name__ == '__main__':
             type=float,
             default=0.001,
             help='learning rate'
+        )
+        parser.add_argument(
+            '-t_img_p',
+            type=str,
+            default=r'F:\dbas3\jhb\Pytorch-ImageClassify-master\PytorchImageClassify-master-main\demo.jpg',
+            help='This is a test image applied to plot feature map.'
         )
         parser.add_argument(
             '-ld',
@@ -121,8 +127,8 @@ if __name__ == '__main__':
     classes_table.add_row(range(len(classes)))
     print("{}\n".format(classes_table))
     print("Train information:")
-    model = Resnet18(pretrain=True, num_classes=args.cn).to(device)
-    summary(model, input_size=(3, args.rs[0], args.rs[1]))
+    model = Resnet18(pretrain=False, num_classes=args.cn).to(device)
+    summary(model, (3, args.rs[0], args.rs[1]), args.bs)
     optimizer = Adam(params=model.parameters(), lr=args.lr)
     loss_fn = CrossEntropyLoss()
     train_table = PrettyTable(['theme', 'resize', 'batch size', 'epoch', 'learning rate', 'directory of log'],
@@ -207,6 +213,11 @@ if __name__ == '__main__':
         precisions.append(valid_pre)
         recalls.append(valid_recall)
         f1s.append(valid_f1)
+
+        indicator_table = PrettyTable(['Accuracy', 'Precision', 'Recall', 'F1'],)
+        train_table.add_row([valid_acc, valid_pre, valid_recall, valid_f1])
+        print('\n{}\n'.format(indicator_table))
+
         # aucs.append(valid_auc)
         # maps.append(valid_ap)
 
@@ -215,4 +226,4 @@ if __name__ == '__main__':
     et = datetime.now()
     log_generator(args.t, args.csvp,args.clsp,(1, 3, args.rs[0], args.rs[1]), et - st, dataset_table, classes_table, device_table,
                   train_table, optimizer, model,
-                  args.e, [losses, accuracies, precisions, recalls, f1s], args.ld, best_checkpoint)
+                  args.e, [losses, accuracies, precisions, recalls, f1s], args.ld, best_checkpoint,args.t_img_p,args.rs)
