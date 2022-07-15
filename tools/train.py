@@ -215,7 +215,7 @@ if __name__ == '__main__':
         f1s.append(valid_f1)
 
         indicator_table = PrettyTable(['Accuracy', 'Precision', 'Recall', 'F1'],)
-        train_table.add_row([valid_acc, valid_pre, valid_recall, valid_f1])
+        indicator_table.add_row([valid_acc, valid_pre, valid_recall, valid_f1])
         print('\n{}\n'.format(indicator_table))
 
         # aucs.append(valid_auc)
