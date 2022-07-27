@@ -92,9 +92,14 @@ python train.py
 2022/5/26更新：提供了中间层特征图绘制功能。
 
 2022/7/28大更新：
+
 -更新了log_generater,取消了以往的操作方式，改用logging库编写日志文件；
+
 -log_generater被拆解，使得程序更加简介且具有操控性；
+
 -绘图功能现在可选择用户自己根据indicators_dateframe绘制；
+
 -增加了断点续训功能；
+
 -重写scatter和folder两种格式数据的读入方式，使得整个训练更加系统；
 
