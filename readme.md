@@ -37,6 +37,8 @@ python -m pip install -U prettytable
 
 ## 二.运行predict测试文件
 
+tips:建议使用pycharm运行，若没有则可以选择终端运行——不过可能会有些bug，因此作者还是建议pycharm。
+
 预测权重下载:https://wwp.lanzouf.com/iQ9g702lytmj
 
 密码:6bbf
@@ -46,9 +48,11 @@ python -m pip install -U prettytable
 在终端中输入:
 
 ```
-python predict.py -pw your weight's path -pp the path of your image applied to prediciton
+python tools/predict.py -pw your weight's path -pp the path of your image applied to prediciton
 ```
+
 ## 三.制作并训练自己的数据
+
 这里海洋生物4分类数据集为例子，部分数据集下载:
 
 
