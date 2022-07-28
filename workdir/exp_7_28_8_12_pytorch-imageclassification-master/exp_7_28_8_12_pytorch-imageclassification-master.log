@@ -1,0 +1,210 @@
+Generating classes.txt and DIF file.......
+Done.
+Training device information:
++--------------------+-------------------------+---------------------------------+
+|   number of gpu    |    applied gpu index    |         applied gpu name        |
++--------------------+-------------------------+---------------------------------+
+|         1          |            0            |     NVIDIA GeForce RTX 2060     |
++--------------------+-------------------------+---------------------------------+
+
+Use dataset information file:D:\PythonCode\Pytorch-ImageClassification-master\data\scatter\refer.csv
+Loading dataset from path: D:\PythonCode\Pytorch-ImageClassification-master\data\scatter\JPEGImage......
+dataset information:
++--------------------------+-------------------+-------------------+------------+
+|    number of samples     |    train number   |    valid number   |  percent   |
++--------------------------+-------------------+-------------------+------------+
+|           1120           |        1008       |        112        |    0.9     |
++--------------------------+-------------------+-------------------+------------+
+
+Classes information:
++-----------------+------------+---------------+--------------------+
+|      cloudy     |    rain    |     shine     |      sunrise       |
++-----------------+------------+---------------+--------------------+
+|        0        |     1      |       2       |         3          |
++-----------------+------------+---------------+--------------------+
+
+Train information:
++------------------------------------+------------+------------+-------+---------------+----------------------------------------------------------+
+|               theme                |   resize   | batch size | epoch | learning rate |                     directory of log                     |
++------------------------------------+------------+------------+-------+---------------+----------------------------------------------------------+
+| pytorch-imageclassification-master | (224, 224) |     64     |   10  |     0.001     | D:\PythonCode\Pytorch-ImageClassification-master\workdir |
++------------------------------------+------------+------------+-------+---------------+----------------------------------------------------------+
+
+Train begins......
+Epoch loss:0.7970818970352411
+
++--------------------+--------------------+--------------------+--------------------+
+|      Accuracy      |     Precision      |       Recall       |         F1         |
++--------------------+--------------------+--------------------+--------------------+
+| 0.6339285714285714 | 0.6219449975111997 | 0.6339285714285714 | 0.5981796191297917 |
++--------------------+--------------------+--------------------+--------------------+
+
+Epoch loss:0.3980133580043912
+
++--------------------+--------------------+--------------------+--------------------+
+|      Accuracy      |     Precision      |       Recall       |         F1         |
++--------------------+--------------------+--------------------+--------------------+
+| 0.7232142857142857 | 0.6962425595238094 | 0.7232142857142857 | 0.6787876662692568 |
++--------------------+--------------------+--------------------+--------------------+
+
+Epoch loss:0.33398327324539423
+
++----------+--------------------+--------+--------------------+
+| Accuracy |     Precision      | Recall |         F1         |
++----------+--------------------+--------+--------------------+
+|   0.75   | 0.8340773809523808 |  0.75  | 0.7323718753572903 |
++----------+--------------------+--------+--------------------+
+
+Epoch loss:0.30979057401418686
+
++--------------------+--------------------+--------------------+--------------------+
+|      Accuracy      |     Precision      |       Recall       |         F1         |
++--------------------+--------------------+--------------------+--------------------+
+| 0.8571428571428571 | 0.8841071428571429 | 0.8571428571428571 | 0.8497266038465198 |
++--------------------+--------------------+--------------------+--------------------+
+
+Epoch loss:0.30902050621807575
+
++--------------------+--------------------+--------------------+--------------------+
+|      Accuracy      |     Precision      |       Recall       |         F1         |
++--------------------+--------------------+--------------------+--------------------+
+| 0.7410714285714286 | 0.8407738095238094 | 0.7410714285714286 | 0.7250159261028826 |
++--------------------+--------------------+--------------------+--------------------+
+
+Epoch loss:0.29384053964167833
+
++--------------------+--------------------+--------------------+--------------------+
+|      Accuracy      |     Precision      |       Recall       |         F1         |
++--------------------+--------------------+--------------------+--------------------+
+| 0.8392857142857143 | 0.8633585164835164 | 0.8392857142857143 | 0.8301752156664152 |
++--------------------+--------------------+--------------------+--------------------+
+
+Epoch loss:0.28728339076042175
+
++--------------------+-----------+--------------------+--------------------+
+|      Accuracy      | Precision |       Recall       |         F1         |
++--------------------+-----------+--------------------+--------------------+
+| 0.7321428571428571 |  0.70375  | 0.7321428571428571 | 0.6854052888761137 |
++--------------------+-----------+--------------------+--------------------+
+
+Epoch loss:0.2464457913301885
+
++--------------------+--------------------+--------------------+--------------------+
+|      Accuracy      |     Precision      |       Recall       |         F1         |
++--------------------+--------------------+--------------------+--------------------+
+| 0.5446428571428571 | 0.5816197691197692 | 0.5446428571428571 | 0.5133516291634485 |
++--------------------+--------------------+--------------------+--------------------+
+
+Epoch loss:0.2725143092684448
+
++--------------------+--------------------+--------------------+--------------------+
+|      Accuracy      |     Precision      |       Recall       |         F1         |
++--------------------+--------------------+--------------------+--------------------+
+| 0.7589285714285714 | 0.8516865079365079 | 0.7589285714285714 | 0.7124716875386518 |
++--------------------+--------------------+--------------------+--------------------+
+
+Epoch loss:0.22272194270044565
+
++--------------------+--------------------+--------------------+--------------------+
+|      Accuracy      |     Precision      |       Recall       |         F1         |
++--------------------+--------------------+--------------------+--------------------+
+| 0.8392857142857143 | 0.9002114359257217 | 0.8392857142857143 | 0.8247711750753071 |
++--------------------+--------------------+--------------------+--------------------+
+
+optimizer:
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0
+)
+model:
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU()
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU()
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU()
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU()
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU()
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU()
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU()
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU()
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): Linear(in_features=512, out_features=4, bias=True)
+)
+
+Last model transforms successfully and path is D:\PythonCode\Pytorch-ImageClassification-master\workdir/exp_7_28_8_12_pytorch-imageclassification-master\checkpoints\last.onnx.
+Best model transforms successfully and path is D:\PythonCode\Pytorch-ImageClassification-master\workdir/exp_7_28_8_12_pytorch-imageclassification-master\checkpoints\best_f1.onnx.

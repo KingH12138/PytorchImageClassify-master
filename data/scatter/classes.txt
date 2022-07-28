@@ -1,0 +1,4 @@
+cloudy
+rain
+shine
+sunrise
